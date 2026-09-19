@@ -1,0 +1,48 @@
+import random
+import time
+import shutil
+
+GREEN = "\033[32m]"
+END = "\033[0m"
+
+TERM_WIDTH = shutil.get_terminal_size().columns
+FINISH = TERM_WIDTH - 40
+
+def buses (n1, n2): 
+    output = []
+    output.append(" " * n1 + " ____________" + " " * max(0, FINISH - n1) +               "|")
+    output.append(" " * n1 + "|__|__|__|__|_______" + " " * max(0, FINISH - n1) +        "|")
+    output.append(" " * n1 + "|    MICHAELLA    |" + " " * max(0, FINISH - n1) +         "|")
+    output.append(" " * n1 + "|~~@~~~~~~~~~~~~@~~~|)" + " " * max(0, FINISH - n1) +      "|")
+    output.append(" " * n2 + " ____________" + " " * max(0, FINISH - n2) +               "|")
+    output.append(" " * n2 + "|__|__|__|__|_______" + " " * max(0, FINISH - n2) +        "|")
+    output.append(" " * n2 + "|  ASHLEY          |   " + " " * max(0, FINISH - n2) +     "|")
+    output.append(" " * n2 + "|~~@~~~~~~~~~~~~@~~~|)" + " " * max(0, FINISH - n2) +      "|")
+    return "\n".join(output)
+
+n1 = 0
+n2 = 0
+
+while n1 < FINISH and n2 < FINISH:
+
+    if random.random() < 0.8:
+        n1 += 1
+    if random.random() < 0.8:
+        n2 += 1
+
+    n1 = min(n1, FINISH)
+    n2 = min(n2, FINISH)
+
+    print("\033[H\033[J", end="")
+
+    print("-" * 174)
+    print(buses(n1, n2))
+    print("-" * 174)
+
+
+    time.sleep(0.15)
+
+print("\033[H\033[J", end="")
+print("-" * 174)
+print(buses(n1, n2))
+print("-" * 174)
